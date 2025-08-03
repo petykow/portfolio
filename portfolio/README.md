@@ -48,17 +48,11 @@ portfolio/
 
 ## 🚀 Használat
 
-1. **Klónozd le a projektet**:
-   ```bash
-   git clone [repository-url]
-   cd portfolio
-   ```
-
-2. **Nyisd meg az index.html fájlt**:
+1. **Nyisd meg az index.html fájlt**:
    - Dupla kattintás az `index.html` fájlra
    - Vagy használj egy lokális szervert
 
-3. **Lokális szerver indítása** (opcionális):
+2. **Lokális szerver indítása** (opcionális):
    ```bash
    # Python 3
    python -m http.server 8000

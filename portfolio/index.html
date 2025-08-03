@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -277,15 +279,15 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form>
+                    <form id="contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="Név" required>
+                            <input type="text" name="name" placeholder="Név" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Email" required>
+                            <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Üzenet" rows="5" required></textarea>
+                            <textarea name="message" placeholder="Üzenet" rows="5" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">Küldés</button>
                     </form>

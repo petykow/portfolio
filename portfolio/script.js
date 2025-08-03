@@ -122,7 +122,7 @@ if (contactForm) {
         };
         
         // Send email using EmailJS
-        emailjs.send('service_xxhr2m7', 'template_8shimop', templateParams) 
+        emailjs.send('service_xxhr2m7', 'template_8shimop', templateParams)
             .then(function(response) {
                 alert('Köszönöm az üzenetet! Hamarosan felveszem veled a kapcsolatot.');
                 contactForm.reset();
