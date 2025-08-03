@@ -96,21 +96,21 @@ if (contactForm) {
         
         // Simple validation
         if (!name || !email || !message) {
-            alert('Kérlek töltsd ki az összes mezőt!');
+            alert("Please fill out all the fields!");
             return;
         }
         
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
-            alert('Kérlek adj meg egy érvényes email címet!');
+            alert("Please enter a valid email address!");
             return;
         }
         
         // Update button state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Küldés...';
+        submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
         
         // EmailJS template parameters
@@ -124,12 +124,12 @@ if (contactForm) {
         // Send email using EmailJS
         emailjs.send('service_xxhr2m7', 'template_8shimop', templateParams)
             .then(function(response) {
-                alert('Köszönöm az üzenetet! Hamarosan felveszem veled a kapcsolatot.');
+                alert('Thank you for your message! I\'ll get back to you soon.');
                 contactForm.reset();
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             }, function(error) {
-                alert('Hiba történt az üzenet küldése során. Kérlek próbáld újra.');
+                alert("Oops! Something went wrong while sending your message. Please try again.");
                 submitBtn.textContent = originalText;
                 submitBtn.disabled = false;
             });
@@ -237,7 +237,8 @@ function scrollToTop() {
 
 // Add scroll to top button
 const scrollToTopBtn = document.createElement('button');
-scrollToTopBtn.innerHTML = '<i class="fas fa-arrow-up"></i>';
+const avatarDiv = document.querySelector('.hero-avatar');
+avatarDiv.innerHTML = '<img src="sze.jpg" alt="Petko" />';
 scrollToTopBtn.className = 'scroll-to-top';
 scrollToTopBtn.style.cssText = `
     position: fixed;
@@ -282,3 +283,15 @@ scrollToTopBtn.addEventListener('mouseleave', () => {
     scrollToTopBtn.style.transform = 'scale(1)';
     scrollToTopBtn.style.background = '#2563eb';
 }); 
+
+
+document.getElementById('contact-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const name = this.elements['name'].value.trim();
+  if (!name) {
+    alert("Please fill out the name field."); // saját angol hibaüzenet
+    return;
+  }
+  // egyéb validációk...
+  // ha minden OK, submit vagy email küldés
+});
