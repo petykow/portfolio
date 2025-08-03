@@ -78,17 +78,21 @@ skillBars.forEach(bar => {
     skillObserver.observe(bar);
 });
 
-// Form submission
-const contactForm = document.querySelector('.contact-form form');
+// EmailJS Configuration
+(function() {
+    emailjs.init("IN97Nwq6MeTX1d187"); // Cseréld ki a saját User ID-dra
+})();
+
+// Form submission with EmailJS
+const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
         // Get form data
-        const formData = new FormData(contactForm);
-        const name = contactForm.querySelector('input[type="text"]').value;
-        const email = contactForm.querySelector('input[type="email"]').value;
-        const message = contactForm.querySelector('textarea').value;
+        const name = contactForm.querySelector('input[name="name"]').value;
+        const email = contactForm.querySelector('input[name="email"]').value;
+        const message = contactForm.querySelector('textarea[name="message"]').value;
         
         // Simple validation
         if (!name || !email || !message) {
@@ -103,19 +107,32 @@ if (contactForm) {
             return;
         }
         
-        // Simulate form submission
+        // Update button state
         const submitBtn = contactForm.querySelector('button[type="submit"]');
         const originalText = submitBtn.textContent;
-        
         submitBtn.textContent = 'Küldés...';
         submitBtn.disabled = true;
         
-        setTimeout(() => {
-            alert('Köszönöm az üzenetet! Hamarosan felveszem veled a kapcsolatot.');
-            contactForm.reset();
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
-        }, 2000);
+        // EmailJS template parameters
+        const templateParams = {
+            from_name: name,
+            from_email: email,
+            message: message,
+            to_name: 'Portfolio Owner'
+        };
+        
+        // Send email using EmailJS
+        emailjs.send('service_xxhr2m7', 'template_8shimop', templateParams) 
+            .then(function(response) {
+                alert('Köszönöm az üzenetet! Hamarosan felveszem veled a kapcsolatot.');
+                contactForm.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, function(error) {
+                alert('Hiba történt az üzenet küldése során. Kérlek próbáld újra.');
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            });
     });
 }
 
