@@ -227,71 +227,20 @@ window.addEventListener('load', () => {
     document.body.classList.add('loaded');
 });
 
-// Utility function for smooth scrolling to top
-function scrollToTop() {
+/* Felgörgetés gomb funkcionalitás */
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('show');
+    } else {
+        scrollToTopBtn.classList.remove('show');
+    }
+});
+
+scrollToTopBtn.addEventListener('click', () => {
     window.scrollTo({
         top: 0,
         behavior: 'smooth'
     });
-}
-
-// Add scroll to top button
-const scrollToTopBtn = document.createElement('button');
-const avatarDiv = document.querySelector('.hero-avatar');
-avatarDiv.innerHTML = '<img src="sze.jpg" alt="Petko" />';
-scrollToTopBtn.className = 'scroll-to-top';
-scrollToTopBtn.style.cssText = `
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background: #2563eb;
-    color: white;
-    border: none;
-    cursor: pointer;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 1000;
-    font-size: 1.2rem;
-`;
-
-document.body.appendChild(scrollToTopBtn);
-
-// Show/hide scroll to top button
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopBtn.style.opacity = '1';
-        scrollToTopBtn.style.visibility = 'visible';
-    } else {
-        scrollToTopBtn.style.opacity = '0';
-        scrollToTopBtn.style.visibility = 'hidden';
-    }
-});
-
-scrollToTopBtn.addEventListener('click', scrollToTop);
-
-// Add hover effect to scroll to top button
-scrollToTopBtn.addEventListener('mouseenter', () => {
-    scrollToTopBtn.style.transform = 'scale(1.1)';
-    scrollToTopBtn.style.background = '#1d4ed8';
-});
-
-scrollToTopBtn.addEventListener('mouseleave', () => {
-    scrollToTopBtn.style.transform = 'scale(1)';
-    scrollToTopBtn.style.background = '#2563eb';
-}); 
-
-
-document.getElementById('contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  const name = this.elements['name'].value.trim();
-  if (!name) {
-    alert("Please fill out the name field."); // saját angol hibaüzenet
-    return;
-  }
-  // egyéb validációk...
-  // ha minden OK, submit vagy email küldés
 });
