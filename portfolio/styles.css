@@ -664,8 +664,8 @@ html {
 }
 
 .hero-avatar {
-    width: 240px;       /* a kör átmérője */
-    height: 240px;
+    width: 270px;       /* a kör átmérője */
+    height: 270px;
     background: rgba(255, 255, 255, 0.15); /* vagy bármilyen szín a körhöz */
     border-radius: 50%;
     display: flex;
@@ -675,9 +675,9 @@ html {
 }
 
 .hero-avatar img {
-    width: 220px;       /* a kép mérete, hogy jól kitöltse a kört */
-    height: 220px;
-    border-radius: 50%;
+    width: 250px;       /* a kép mérete, hogy jól kitöltse a kört */
+    height: 250px;
+    border-radius: 60%;
     object-fit: cover;
 }
 
